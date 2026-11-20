@@ -116,6 +116,51 @@ td input{padding:8px}
 td input.num{text-align:right}
 tr.won input{background:#e3ebf8;color:#7d8fb3}
 .x{min-height:38px;padding:0 10px;color:#7d8fb3}
+
+.tabs{display:inline-flex;gap:6px;margin-top:clamp(28px,3vw,52px);background:#ffffff14;border:1px solid #ffffff2e;border-radius:999px;padding:6px}
+.tabs button{border-radius:999px;font:800 clamp(18px,1.4vw,28px)/1 "Baloo 2",sans-serif;padding:10px clamp(20px,2vw,36px) 6px;min-height:clamp(48px,3vw,64px);color:#dbe4ff}
+.tabs button[aria-selected=true]{background:#fff;color:var(--brand);box-shadow:0 4px 0 #0003}
+[hidden]{display:none!important}
+.gview{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:clamp(24px,3vw,56px);margin-top:clamp(28px,3vw,52px);align-items:start}
+.panel{border:1px solid #ffffff2e;background:#ffffff14;border-radius:28px;padding:clamp(18px,2vw,32px)}
+.panel h2{font:800 clamp(24px,1.8vw,34px)/1 "Baloo 2",sans-serif;margin:0 0 16px}
+.glist{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:10px}
+.glist button{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#ffffff1a;border:1px solid #ffffff2e;border-radius:16px;padding:12px 16px;min-height:60px}
+.glist button b{font:800 clamp(18px,1.3vw,24px)/1.1 "Baloo 2",sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.glist button small{font-weight:700;white-space:nowrap;color:var(--mute);font-size:14px}
+.glist button.on{background:#fff;color:var(--brand)}
+.glist button.on small{color:#5470a8}
+.glist .done small::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);margin-right:6px;vertical-align:1px}
+.gadd{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:8px}
+.gadd input,.stage input{font:16px Inter,sans-serif;padding:10px 12px;border-radius:12px;border:1px solid #ffffff4d;background:#ffffff1f;color:#fff;min-height:46px;width:100%}
+.gadd input::placeholder{color:#c7d2fe}
+.gadd button{grid-column:1/-1}
+.pool{margin-top:18px;font-weight:700;color:var(--mute)}
+.pool b{color:#fff;font-size:22px}
+.stage .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.stage h2{font:800 clamp(34px,3.4vw,72px)/1 "Baloo 2",sans-serif;margin:0}
+.stage .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-weight:700;color:var(--mute)}
+.stage .meta input{width:84px;text-align:center;font-weight:700}
+.stage .acts{display:flex;gap:8px;flex-wrap:wrap}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(220px,17vw,340px),1fr));gap:clamp(14px,1.6vw,28px);margin:clamp(24px,2.6vw,44px) 0}
+.slot{position:relative;background:#fff;color:#0b1d4d;border-radius:24px;padding:clamp(18px,1.6vw,28px);min-height:clamp(130px,10vw,190px);display:flex;flex-direction:column;justify-content:center;gap:4px;box-shadow:0 8px 0 #0002,0 18px 30px #0003;overflow:hidden}
+.slot .no{position:absolute;top:12px;left:14px;width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font:800 16px/1 "Baloo 2",sans-serif;padding-top:2px}
+.slot .nm{font:800 clamp(26px,2.2vw,46px)/1.05 "Baloo 2",sans-serif;text-align:center;overflow-wrap:anywhere;margin-top:14px}
+.slot .nk{text-align:center;color:#5470a8;font-weight:700;font-size:clamp(14px,1vw,18px)}
+.slot.empty{background:#ffffff1a;box-shadow:none;border:2px dashed #ffffff55;color:#c7d2fe}
+.slot.empty .no{background:#ffffff33}
+.slot.roll{background:linear-gradient(#eef2ff,#dfe6ff)}
+.slot.roll .nm{color:var(--brand);filter:blur(.6px);animation:jig .12s linear infinite}
+@keyframes jig{50%{transform:translateY(-3px)}}
+.slot.lock{animation:lockin .55s cubic-bezier(.2,1.7,.4,1);box-shadow:0 0 0 5px var(--pink),0 8px 0 #0002,0 18px 30px #0003}
+@keyframes lockin{0%{transform:scale(.85)}60%{transform:scale(1.07)}}
+.slot .swap{position:absolute;top:8px;right:8px;min-height:34px;padding:0 10px;font-size:13px;border-radius:10px;background:#eef2ff;color:#3b4a7a}
+.acak{background:#fff;color:var(--brand);font:800 clamp(26px,2.2vw,42px)/1 "Baloo 2",sans-serif;padding:6px 48px 0;min-height:clamp(64px,4.6vw,92px);border-radius:999px;box-shadow:0 7px 0 #0004,0 16px 30px #0005;display:block;margin:0 auto;transition:transform .12s}
+.acak:hover:not(:disabled){transform:scale(1.03)}
+.acak:active:not(:disabled){transform:translateY(5px);box-shadow:0 2px 0 #0004}
+.gnote{text-align:center;color:var(--mute);font-weight:700;margin-top:14px;min-height:1.5em}
+.gempty{text-align:center;padding:60px 20px;color:var(--mute);font-weight:700;font-size:20px}
+@media(max-width:900px){.gview{grid-template-columns:minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media(max-width:900px){.wheels{grid-template-columns:minmax(0,1fr)}.dial{max-width:min(100%,360px)}}
 @media(max-width:600px){.tools .lbl{display:none}}
@@ -138,6 +183,12 @@ tr.won input{background:#e3ebf8;color:#7d8fb3}
     </div>
   </header>
 
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tabDoor" aria-selected="true">Doorprize</button>
+    <button role="tab" id="tabGame" aria-selected="false">Mini Games</button>
+  </div>
+
+  <div id="vDoor">
   <div class="wheels" id="wheels"></div>
 
   <section class="winners">
@@ -147,6 +198,21 @@ tr.won input{background:#e3ebf8;color:#7d8fb3}
     </div>
     <div class="wcols" id="win"></div>
   </section>
+  </div>
+
+  <div id="vGame" class="gview" hidden>
+    <div class="panel">
+      <h2>Mini games</h2>
+      <ul class="glist" id="glist"></ul>
+      <form class="gadd" id="gadd">
+        <input id="gName" placeholder="Nama mini game" aria-label="Nama mini game">
+        <input id="gN" type="number" min="1" max="100" value="5" aria-label="Jumlah orang">
+        <button class="ghost" type="submit">+ Tambah mini game</button>
+      </form>
+      <div class="pool">Kandidat tersedia: <b id="poolN">0</b></div>
+    </div>
+    <div class="panel stage" id="stage"></div>
+  </div>
 </div>
 
 <div id="scrim"></div>
@@ -193,7 +259,7 @@ const blank=()=>({nik:'',name:'',b:'',m:'',h:''});
 const has=r=>String(r.name||'').trim()||String(r.nik||'').trim();
 const rid=r=>String(r.nik||'').trim()||('nama:'+norm(r.name));
 const KEY='undian3warna_v2';
-let S={N:50,owned:true,sound:true,tema:'',rows:[
+let S={N:50,owned:true,sound:true,tema:'',view:'door',games:[{id:'g1',name:'Mini Game 1',n:5,picks:[],skip:[]}],gsel:'g1',rows:[
   {nik:'10231',name:'Budi',b:'30',m:'20',h:'17'},{nik:'10232',name:'Angel',b:'28',m:'28',h:'18'},
   {nik:'10233',name:'Sari',b:'5',m:'41',h:'9'},{nik:'10234',name:'Budi',b:'12',m:'7',h:'33'}],winners:[]};
 try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.rows)S=Object.assign(S,s)}catch(e){}
@@ -349,7 +415,7 @@ function renderWarn(){
 function renderTema(){$('temaTxt').textContent=S.tema.trim()||'TBD'}
 function syncN(){let mx=0;S.rows.forEach(r=>{if(!has(r))return;COLORS.forEach(c=>{const n=parseInt(r[c.k],10);if(n>mx)mx=n})});
   S.N=Math.max(2,S.rows.filter(has).length,mx)}
-function renderAll(){if(!spinning.some(Boolean))syncN();renderWinners();markWon();renderWarn();drawAll()}
+function renderAll(){if(!spinning.some(Boolean))syncN();renderWinners();markWon();renderWarn();drawAll();if(S.view==='game'&&!rolling&&$('glist'))renderGames()}
 
 /* ---------- input data ---------- */
 $('tb').addEventListener('input',e=>{const t=e.target;if(t.dataset.r==null)return;
@@ -382,6 +448,78 @@ $('owned').checked=S.owned;$('tema').value=S.tema;
 $('owned').addEventListener('change',e=>{S.owned=e.target.checked;save();renderAll()});
 $('tema').addEventListener('input',e=>{S.tema=e.target.value;save();renderTema()});
 
+
+/* ---------- mini games ---------- */
+let rolling=false;
+const pickedIds=()=>{const s=new Set();S.games.forEach(g=>g.picks.forEach(p=>s.add(p.id)));return s};
+function people(){const seen=new Set(),out=[];S.rows.forEach(r=>{if(!has(r))return;const id=rid(r);if(seen.has(id))return;seen.add(id);
+  out.push({id,name:String(r.name||'').trim()||'(tanpa nama)',nik:String(r.nik||'').trim()})});return out}
+function pool(g){const won=wonSet(),pk=pickedIds(),sk=new Set(g?g.skip:[]);return people().filter(p=>!won.has(p.id)&&!pk.has(p.id)&&!sk.has(p.id))}
+function sample(arr,k){const a=arr.slice(),out=[];while(out.length<k&&a.length)out.push(a.splice(rnd(a.length),1)[0]);return out}
+const curG=()=>S.games.find(g=>g.id===S.gsel)||S.games[0];
+function ding(){if(!S.sound||!AC)return;const t=AC.currentTime;tone(1319,t,.25,'triangle',.22);tone(1976,t+.06,.3,'sine',.12)}
+
+function setView(v){S.view=v;save();$('vDoor').hidden=v!=='door';$('vGame').hidden=v!=='game';
+  $('tabDoor').setAttribute('aria-selected',v==='door');$('tabGame').setAttribute('aria-selected',v==='game');
+  if(v==='door')drawAll();else renderGames()}
+$('tabDoor').onclick=()=>{if(!rolling)setView('door')};$('tabGame').onclick=()=>setView('game');
+
+function renderGames(){
+  if(!S.games.length)S.gsel='';
+  const g=curG();if(g)S.gsel=g.id;
+  $('glist').innerHTML=S.games.map(x=>`<li><button data-g="${x.id}" class="${x.id===S.gsel?'on':''} ${x.picks.length?'done':''}"${rolling?' disabled':''}><b>${esc(x.name)}</b><small>${x.picks.length}/${x.n} orang</small></button></li>`).join('')||'<li class="gempty" style="padding:10px;font-size:15px">Belum ada mini game</li>';
+  $('poolN').textContent=pool(g).length;
+  if(!g){$('stage').innerHTML='<div class="gempty">Tambahkan mini game di panel kiri.</div>';return}
+  const slots=[];for(let j=0;j<g.n;j++){const p=g.picks[j];
+    slots.push(p?`<div class="slot" id="sl${j}"><span class="no">${j+1}</span><button class="swap" data-swap="${j}" ${rolling?'disabled':''}>Ganti</button><div class="nm">${esc(p.name)}</div><div class="nk">${p.nik?'NIK '+esc(p.nik):''}</div></div>`
+      :`<div class="slot empty" id="sl${j}"><span class="no">${j+1}</span><div class="nm">?</div><div class="nk"></div></div>`)}
+  const full=g.picks.length>=g.n;
+  $('stage').innerHTML=`<div class="top"><div><h2>${esc(g.name)}</h2>
+    <div class="meta">Jumlah orang <input type="number" id="gEditN" min="1" max="100" value="${g.n}" ${rolling||g.picks.length?'disabled':''} aria-label="Jumlah orang"> <input id="gEditName" value="${esc(g.name)}" aria-label="Nama mini game" style="width:220px" ${rolling?'disabled':''}></div></div>
+    <div class="acts"><button class="ghost" id="gReset" ${rolling||!g.picks.length?'disabled':''}>Kosongkan</button><button class="ghost" id="gDel" ${rolling?'disabled':''}>Hapus game</button></div></div>
+    <div class="slots">${slots.join('')}</div>
+    <button class="acak" id="gGo" ${rolling||full?'disabled':''}>${full?'Sudah lengkap':g.picks.length?'Acak sisanya!':'Acak peserta!'}</button>
+    <div class="gnote" id="gNote"></div>`;
+}
+$('glist').addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(!b||rolling)return;S.gsel=b.dataset.g;save();renderGames()});
+$('gadd').addEventListener('submit',e=>{e.preventDefault();const n=Math.max(1,Math.min(100,parseInt($('gN').value,10)||1));
+  const name=$('gName').value.trim()||('Mini Game '+(S.games.length+1));const id='g'+Date.now().toString(36);
+  S.games.push({id,name,n,picks:[],skip:[]});S.gsel=id;save();$('gName').value='';renderGames()});
+$('stage').addEventListener('change',e=>{const g=curG();if(!g)return;
+  if(e.target.id==='gEditN'){g.n=Math.max(1,Math.min(100,parseInt(e.target.value,10)||1));save();renderGames()}
+  if(e.target.id==='gEditName'){g.name=e.target.value.trim()||g.name;save();renderGames()}});
+$('stage').addEventListener('click',e=>{const g=curG();if(!g||rolling)return;const t=e.target;
+  if(t.id==='gGo')roll(g,null);
+  else if(t.id==='gReset')armed(t,'Kosongkan',()=>{g.picks=[];g.skip=[];save();renderGames()});
+  else if(t.id==='gDel')armed(t,'Hapus game',()=>{S.games=S.games.filter(x=>x!==g);S.gsel=S.games[0]?S.games[0].id:'';save();renderGames()});
+  else if(t.dataset.swap!=null){const j=+t.dataset.swap,p=g.picks[j];if(!p)return;
+    armed(t,'Ganti',()=>{g.skip.push(p.id);roll(g,j)})}});
+
+function roll(g,only){
+  audio();const pl=pool(g);
+  const idx=only!=null?[only]:[...Array(g.n).keys()].filter(j=>!g.picks[j]);
+  if(only!=null)pl.push(...[]);
+  const need=idx.length,chosen=sample(only!=null?pl.filter(p=>p.id!==g.picks[only].id):pl,need);
+  if(!chosen.length){$('gNote').textContent='Tidak ada kandidat tersisa.';return}
+  const use=idx.slice(0,chosen.length);
+  rolling=true;renderGames();
+  const names=pl.length?pl:people(),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const t0=performance.now(),base=reduce?300:2200,gap=reduce?100:650;let left=use.length;
+  use.forEach((j,k)=>{const el=$('sl'+j);el.classList.remove('empty','lock');el.classList.add('roll');
+    const nm=el.querySelector('.nm'),nk=el.querySelector('.nk'),sw=el.querySelector('.swap');if(sw)sw.remove();
+    const stopAt=t0+base+k*gap;
+    const step=()=>{const now=performance.now();
+      if(now>=stopAt){const p=chosen[k];g.picks[j]=p;el.classList.remove('roll');void el.offsetWidth;el.classList.add('lock');
+        nm.textContent=p.name;nk.textContent=p.nik?'NIK '+p.nik:'';ding();
+        if(--left===0)finish(g,chosen.length<need);return}
+      const r=names[rnd(names.length)];nm.textContent=r.name;nk.textContent=r.nik?'NIK '+r.nik:'';tick();
+      const prog=Math.max(0,1-(stopAt-now)/(base+k*gap));setTimeout(step,45+Math.pow(prog,3)*260)};
+    step()});
+}
+function finish(g,short){
+  g.picks=g.picks.filter(Boolean);save();
+  setTimeout(()=>{rolling=false;renderGames();fanfare();confetti(['#ff4fa3','#22d3ee','#a3e635','#c084fc','#fde047','#ffffff']);
+    if(short)$('gNote').textContent='Kandidat tidak cukup untuk mengisi semua slot.'},350)}
 /* ---------- panel & dialog ---------- */
 const openD=()=>{$('drawer').classList.add('open');$('scrim').classList.add('on');$('pbox').focus()};
 const closeD=()=>{$('drawer').classList.remove('open');$('scrim').classList.remove('on')};
@@ -414,7 +552,8 @@ $('logoFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)retu
     S.logo=cv.toDataURL('image/png');save();showLogo(S.logo)};im.src=rd.result};rd.readAsDataURL(f)});
 $('logoDel').onclick=()=>{S.logo='';save();$('logoFile').value='';initLogo()};
 applyBrand();initLogo();
-renderSnd();renderTema();renderTable();renderAll();
+if(!Array.isArray(S.games))S.games=[];
+renderSnd();renderTema();renderTable();renderAll();setView(S.view==='game'?'game':'door');
 document.fonts&&document.fonts.ready.then(drawAll);
 }
 </script>
