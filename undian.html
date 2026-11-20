@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undian Akhir Tahun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: pesta akhir tahun kantor, meriah dan ceria
+   IDEA: panggung undian dengan tiga roda berlampu seperti di pasar malam
+   PICTURE: tiga roda besar berbingkai lampu di atas panggung biru berbintang
+   COLOUR and TYPE: biru tua ke biru terang, putih, aksen roda Biru/Merah/Hijau; Baloo 2 + Inter
+   LAYOUT: judul + tema di atas, tiga roda sejajar, pita pemenang di bawah; data di panel samping */
+:root{color-scheme:dark;--deep:#06184a;--blue:#0f3fa8;--sky:#4ea3ff;--ice:#dcecff;--ink:#ffffff;--mute:#a9c4f0;--b:#1f6fe5;--m:#e5322d;--h:#16a34a}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;min-height:100vh;
+  background:radial-gradient(1.5px 1.5px at 12% 18%,#fff8 50%,#0000),radial-gradient(1px 1px at 78% 12%,#fff9 50%,#0000),radial-gradient(1.5px 1.5px at 42% 8%,#fff6 50%,#0000),radial-gradient(1px 1px at 90% 40%,#fff7 50%,#0000),radial-gradient(1px 1px at 6% 55%,#fff6 50%,#0000),radial-gradient(1.5px 1.5px at 62% 30%,#fff5 50%,#0000),
+  radial-gradient(ellipse 90% 60% at 50% 0%,#2a6be0 0%,#0f3fa8 40%,#06184a 100%) fixed;background-color:var(--deep)}
+.wrap{max-width:1240px;margin:0 auto;padding:clamp(20px,3vw,40px) max(4vw,16px)}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+h1{font:800 clamp(34px,5.4vw,58px)/1 "Baloo 2",system-ui,sans-serif;margin:0;text-wrap:balance;text-shadow:0 4px 0 #0a2a78,0 10px 30px #0008}
+h1 span{display:block;color:var(--ice);font-size:.62em;margin-top:6px}
+.tema{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#ffffff1f;border:1px solid #ffffff40;border-radius:999px;padding:6px 16px;font-weight:700;backdrop-filter:blur(4px)}
+.tema i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 10px var(--sky)}
+.tools{display:flex;gap:10px}
+button{font:700 16px Inter,system-ui,sans-serif;min-height:44px;padding:0 18px;border-radius:14px;border:0;cursor:pointer;color:inherit;background:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #fff;outline-offset:2px}
+button:disabled{opacity:.55;cursor:not-allowed}
+.ghost{background:#ffffff1a;border:1px solid #ffffff38;color:#fff;display:inline-flex;align-items:center;gap:8px}
+.ghost:hover{background:#ffffff2e}
+.ghost svg{width:20px;height:20px}
+.wheels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,32px);margin-top:clamp(24px,4vw,44px)}
+.wheel{display:flex;flex-direction:column;align-items:center;gap:14px}
+.tag{display:flex;align-items:center;gap:10px}
+.tag b{font:800 26px/1 "Baloo 2",sans-serif;background:var(--c);padding:8px 22px 4px;border-radius:999px;box-shadow:0 4px 0 var(--d)}
+.tag small{color:var(--mute);font-weight:600;white-space:nowrap}
+.dial{position:relative;width:100%;max-width:360px;aspect-ratio:1;filter:drop-shadow(0 18px 30px #0009)}
+.dial canvas{position:absolute;inset:0;width:100%;height:100%}
+.pointer{position:absolute;left:50%;top:-10px;transform:translateX(-50%);z-index:2;width:34px;height:44px}
+.dial.win .pointer{animation:bob .5s ease-in-out 3}
+@keyframes bob{50%{transform:translateX(-50%) translateY(-6px)}}
+.res{min-height:34px;font:800 24px/1.3 "Baloo 2",sans-serif;text-align:center}
+.res em{font-style:normal;color:var(--mute);font:600 15px Inter,sans-serif;display:block}
+.go{background:linear-gradient(#fff,var(--ice));color:var(--deep);font-size:20px;width:100%;max-width:300px;min-height:56px;border-radius:18px;box-shadow:0 6px 0 #8fb6ec,0 12px 24px #0006;transition:transform .1s}
+.go:active:not(:disabled){transform:translateY(4px);box-shadow:0 2px 0 #8fb6ec}
+.winners{margin-top:clamp(28px,4vw,48px);background:#ffffff12;border:1px solid #ffffff26;border-radius:24px;padding:20px}
+.wh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.wh h2{font:800 30px/1 "Baloo 2",sans-serif;margin:0}
+.wh .row{display:flex;gap:8px;flex-wrap:wrap}
+.wh button{min-height:40px;font-size:14px}
+.wcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.wcol h3{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;background:var(--c);border-radius:14px;padding:8px 14px 6px;font:800 22px/1 "Baloo 2",sans-serif;box-shadow:0 4px 0 var(--d)}
+.wcol h3 small{font:700 14px Inter,sans-serif;background:#ffffff33;border-radius:999px;padding:2px 10px}
+ol.win{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+ol.win li{display:flex;align-items:center;gap:10px;background:#fff;color:#0b1d4d;border-radius:14px;padding:7px 10px;font-weight:700}
+ol.win li.new{animation:pop .45s ease-out}
+ol.win li .n{color:#fff;background:var(--c);border-radius:10px;min-width:46px;text-align:center;font:800 20px/1.6 "Baloo 2",sans-serif;flex:none}
+ol.win li .p{display:grid;line-height:1.2}
+ol.win li .p b,ol.win li .p small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ol.win li .p small{color:#5470a8;font-weight:600;font-size:13px}
+ol.win .none{background:none;color:var(--mute);font-weight:600;padding:4px 2px}
+.card .nik{color:#5470a8;font-weight:700;margin:-14px 0 18px}
+.card .nik:empty{display:none}
+td input.nikc{width:96px}
+@media(max-width:900px){.wcols{grid-template-columns:minmax(0,1fr)}}
+#ov{position:fixed;inset:0;background:#020b28cc;display:none;place-items:center;z-index:20;padding:16px}
+#ov.on{display:grid}
+.card{background:#fff;color:#0b1d4d;border-radius:28px;padding:28px 28px 24px;text-align:center;max-width:440px;width:100%;animation:pop .45s cubic-bezier(.2,1.6,.4,1);box-shadow:0 0 0 8px var(--c),0 30px 80px #000a}
+.card .lbl{font-weight:700;color:#5470a8}
+.card .big{font:800 clamp(90px,24vw,150px)/.95 "Baloo 2",sans-serif;color:var(--c)}
+.card .who{font:800 clamp(30px,7vw,42px)/1.05 "Baloo 2",sans-serif;margin:4px 0 20px;overflow-wrap:anywhere}
+.card button{background:var(--c);color:#fff;min-width:160px;min-height:52px;font-size:18px}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+#cf{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+#scrim{position:fixed;inset:0;background:#020b2899;z-index:10;display:none}
+#scrim.on{display:block}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(620px,100vw);background:#f4f8ff;color:#0b1d4d;z-index:11;transform:translateX(105%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-20px 0 60px #0007}
+aside.open{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--blue);color:#fff}
+.dh h2{font:800 26px/1 "Baloo 2",sans-serif;margin:0}
+.db{overflow-y:auto;padding:20px;display:grid;gap:18px;align-content:start}
+.fld{display:grid;gap:6px;font-weight:700;font-size:14px}
+aside input,aside textarea{font:16px Inter,system-ui,sans-serif;padding:10px;border:1px solid #c5d5f0;border-radius:10px;background:#fff;color:#0b1d4d;width:100%}
+aside textarea{resize:vertical;tab-size:12}
+.pri{background:var(--blue);color:#fff}
+.sec{background:#fff;border:1px solid #c5d5f0;color:#0b1d4d}
+.row2{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.small{font-size:13px;color:#4b6290;font-weight:600}
+.warn{color:#b42318;font-size:14px;font-weight:600}
+.warn:empty{display:none}
+.opts{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.opts label{display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px}
+.opts input[type=number]{width:84px}
+.opts input[type=checkbox]{width:20px;height:20px}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-size:13px;color:#4b6290;padding:6px 4px}
+td{padding:3px}
+td input{padding:8px}
+td input.num{text-align:right}
+tr.won input{background:#e3ebf8;color:#7d8fb3}
+.x{min-height:38px;padding:0 10px;color:#7d8fb3}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:900px){.wheels{grid-template-columns:minmax(0,1fr)}.dial{max-width:320px}}
+@media(max-width:600px){.tools .lbl{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Acara Akhir Tahun<span>Divisi Human Capital</span></h1>
+      <div class="tema"><i></i><span id="temaTxt"></span></div>
+    </div>
+    <div class="tools">
+      <button class="ghost" id="snd" aria-pressed="true" aria-label="Suara"></button>
+      <button class="ghost" id="openData"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="lbl">Data peserta</span></button>
+    </div>
+  </header>
+
+  <div class="wheels" id="wheels"></div>
+
+  <section class="winners">
+    <div class="wh">
+      <h2>Pemenang</h2>
+      <div class="row"><button class="ghost" id="undo">Batalkan terakhir</button><button class="ghost" id="reset">Reset</button></div>
+    </div>
+    <div class="wcols" id="win"></div>
+  </section>
+</div>
+
+<div id="scrim"></div>
+<aside id="drawer" aria-label="Data peserta">
+  <div class="dh"><h2>Data peserta</h2><button class="ghost" id="closeData">Tutup</button></div>
+  <div class="db">
+    <label class="fld">Tema acara<input id="tema" placeholder="TBD"></label>
+    <label class="fld">Tempel dari Excel (NIK, Nama, Biru, Merah, Hijau)
+      <textarea id="pbox" rows="5" placeholder="10231&#9;Budi&#9;30&#9;20&#9;17&#10;10232&#9;Angel&#9;28&#9;28&#9;18"></textarea></label>
+    <div class="row2"><button class="pri" id="pReplace">Ganti semua data</button><button class="sec" id="pAppend">Tambahkan</button><span class="small" id="pMsg"></span></div>
+    <div class="opts">
+      <label><input type="checkbox" id="owned"> Hanya nomor bertuan</label>
+    </div>
+    <p class="warn" id="warn"></p>
+    <div>
+      <div class="row2" style="justify-content:space-between"><span class="small" id="count"></span><span class="row2"><button class="sec" id="add">+ Baris</button><button class="sec" id="clear">Kosongkan</button></span></div>
+      <table><thead><tr><th>NIK</th><th>Nama</th><th>Biru</th><th>Merah</th><th>Hijau</th><th></th></tr></thead><tbody id="tb"></tbody></table>
+    </div>
+  </div>
+</aside>
+
+<div id="ov" role="dialog" aria-modal="true" aria-labelledby="ovWho"><div class="card" id="ovCard">
+  <div class="lbl" id="ovColor"></div>
+  <div class="big" id="ovNum"></div>
+  <div class="who" id="ovWho"></div>
+  <div class="nik" id="ovNik"></div>
+  <button id="ovClose">Mantap!</button>
+</div></div>
+<canvas id="cf"></canvas>
+
+<script>
+{
+const COLORS=[
+  {k:'b',name:'Biru',c:'#1f6fe5',d:'#1650b0',light:'#cfe0fb'},
+  {k:'m',name:'Merah',c:'#e5322d',d:'#ab201c',light:'#f8d0ce'},
+  {k:'h',name:'Hijau',c:'#16a34a',d:'#0e7535',light:'#c8ecd5'}];
+const FIELDS=['nik','name','b','m','h'];
+const blank=()=>({nik:'',name:'',b:'',m:'',h:''});
+const has=r=>String(r.name||'').trim()||String(r.nik||'').trim();
+const rid=r=>String(r.nik||'').trim()||('nama:'+norm(r.name));
+const KEY='undian3warna_v2';
+let S={N:50,owned:true,sound:true,tema:'',rows:[
+  {nik:'10231',name:'Budi',b:'30',m:'20',h:'17'},{nik:'10232',name:'Angel',b:'28',m:'28',h:'18'},
+  {nik:'10233',name:'Sari',b:'5',m:'41',h:'9'},{nik:'10234',name:'Budi',b:'12',m:'7',h:'33'}],winners:[]};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.rows)S=Object.assign(S,s)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const norm=s=>String(s||'').trim().toLowerCase();
+const esc=s=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+const rot=[0,0,0],spinning=[false,false,false],last=['','',''];
+let blink=0,justWon=false;
+
+/* ---------- suara ---------- */
+let AC=null;
+function audio(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
+  if(AC&&AC.state==='suspended')AC.resume().catch(()=>{});return AC}
+function tone(f,t0,d,type,vol){const a=AC,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,t0);
+  g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vol,t0+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);
+  o.connect(g);g.connect(a.destination);o.start(t0);o.stop(t0+d+0.03)}
+let lastTick=0;
+function tick(){if(!S.sound||!AC)return;const t=AC.currentTime;if(t-lastTick<0.035)return;lastTick=t;
+  tone(1700,t,0.035,'square',0.06);tone(900,t,0.05,'triangle',0.08)}
+function fanfare(){if(!S.sound||!AC)return;const t=AC.currentTime+0.05;
+  [[523,0],[659,.11],[784,.22],[1047,.33],[784,.46]].forEach(([f,d])=>{tone(f,t+d,.22,'triangle',.22);tone(f*2,t+d,.12,'square',.03)});
+  [523,659,784,1047].forEach(f=>tone(f,t+.6,1.3,'triangle',.12));tone(2093,t+.6,1.1,'sine',.05);
+  for(let i=0;i<10;i++)tone(2600+Math.random()*1800,t+.65+i*.06,.08,'sine',.04)}
+const ICON_ON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+const ICON_OFF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>';
+function renderSnd(){$('snd').innerHTML=(S.sound?ICON_ON:ICON_OFF)+`<span class="lbl">${S.sound?'Suara on':'Suara off'}</span>`;$('snd').setAttribute('aria-pressed',S.sound)}
+$('snd').onclick=()=>{S.sound=!S.sound;save();renderSnd();if(S.sound){audio();tick()}};
+
+/* ---------- logika undian ---------- */
+function owners(k){const m={};S.rows.forEach(r=>{const n=parseInt(r[k],10);if(has(r)&&n>=1&&n<=S.N&&!m[n])m[n]=r});return m}
+const wonSet=()=>new Set(S.winners.filter(w=>w.id).map(w=>w.id));
+function status(k,n,own,won){
+  if(S.winners.some(w=>w.k===k&&w.n===n))return 'drawn';
+  const o=own[n];if(!o)return 'empty';return won.has(rid(o))?'out':'ok'}
+function eligible(k){const own=owners(k),won=wonSet(),out=[];
+  for(let n=1;n<=S.N;n++){const st=status(k,n,own,won);if(st==='ok'||(st==='empty'&&!S.owned))out.push(n)}return out}
+
+$('wheels').innerHTML=COLORS.map((c,i)=>`<div class="wheel" style="--c:${c.c};--d:${c.d}">
+  <div class="tag"><b>${c.name}</b><small id="left${i}"></small></div>
+  <div class="dial" id="dial${i}">
+    <svg class="pointer" viewBox="0 0 34 44"><path d="M17 42 L3 10 A14 14 0 1 1 31 10 Z" fill="#fff" stroke="${c.d}" stroke-width="3"/><circle cx="17" cy="14" r="5" fill="${c.c}"/></svg>
+    <canvas id="cv${i}"></canvas></div>
+  <div class="res" id="res${i}"></div>
+  <button class="go" id="go${i}">Putar!</button></div>`).join('');
+
+function draw(i){
+  const cv=$('cv'+i),c=COLORS[i],W=cv.clientWidth;if(!W)return;
+  const dpr=window.devicePixelRatio||1;if(cv.width!==Math.round(W*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(W*dpr)}
+  const x=cv.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,W);
+  const cx=W/2,RO=W/2-2,rim=Math.max(14,W*0.055),R=RO-rim,a=2*Math.PI/S.N,own=owners(c.k),won=wonSet();
+  // bingkai
+  const g=x.createLinearGradient(0,0,0,W);g.addColorStop(0,'#ffffff');g.addColorStop(1,'#a9c8f5');
+  x.beginPath();x.arc(cx,cx,RO,0,2*Math.PI);x.fillStyle=g;x.fill();
+  const L=24;for(let j=0;j<L;j++){const t=j/L*2*Math.PI,on=spinning[i]?((j+blink)%2===0):(j%2===0);
+    x.beginPath();x.arc(cx+Math.cos(t)*(RO-rim/2),cx+Math.sin(t)*(RO-rim/2),rim*0.22,0,2*Math.PI);
+    x.fillStyle=on?'#ffffff':c.c;x.shadowColor=on?'#fff':'transparent';x.shadowBlur=on?8:0;x.fill()}
+  x.shadowBlur=0;
+  const fs=Math.max(8,Math.min(15,R*2*Math.PI/S.N*0.62));
+  for(let n=1;n<=S.N;n++){
+    const s=-Math.PI/2+rot[i]+(n-1)*a,st=status(c.k,n,own,won);let fill,txt='#fff';
+    if(st==='ok')fill=n%2?c.c:c.d;
+    else if(st==='empty'){fill=S.owned?(n%2?'#d9e2ee':'#e8eef6'):(n%2?c.light:'#ffffff');txt='#53627a'}
+    else{fill=n%2?'#7f8794':'#929aa6';txt='#e9ecf1'}
+    x.beginPath();x.moveTo(cx,cx);x.arc(cx,cx,R,s,s+a);x.closePath();x.fillStyle=fill;x.fill();
+    x.strokeStyle='rgba(255,255,255,.5)';x.lineWidth=1;x.stroke();
+    x.save();x.translate(cx,cx);x.rotate(s+a/2);x.fillStyle=txt;x.font=`700 ${fs}px Inter,sans-serif`;
+    x.textAlign='right';x.textBaseline='middle';x.fillText(n,R-7,0);
+    if(st==='drawn'||st==='out'){const w=x.measureText(n).width;x.fillRect(R-9-w,-0.6,w+4,1.4)}
+    x.restore()}
+  const hub=R*0.24,hg=x.createRadialGradient(cx-hub*.3,cx-hub*.3,1,cx,cx,hub);hg.addColorStop(0,'#fff');hg.addColorStop(1,'#cfe0fb');
+  x.beginPath();x.arc(cx,cx,hub,0,2*Math.PI);x.fillStyle=hg;x.fill();x.lineWidth=4;x.strokeStyle=c.d;x.stroke();
+  x.fillStyle=c.d;x.font=`800 ${Math.max(13,hub*0.42)}px "Baloo 2",sans-serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(c.name,cx,cx+2);
+}
+const drawAll=()=>COLORS.forEach((c,i)=>draw(i));
+const ro=new ResizeObserver(drawAll);COLORS.forEach((c,i)=>ro.observe($('cv'+i)));
+
+function rnd(n){const u=new Uint32Array(1);crypto.getRandomValues(u);return u[0]%n}
+function spin(i){
+  if(spinning[i])return;audio();const c=COLORS[i],el=eligible(c.k);
+  if(!el.length){$('res'+i).innerHTML='<em>Nomor sudah habis</em>';return}
+  const n=el[rnd(el.length)],a=2*Math.PI/S.N,T=2*Math.PI;
+  const target=((-(n-0.5)*a+(Math.random()-.5)*a*0.6)%T+T)%T,cur=(rot[i]%T+T)%T,delta=((target-cur)%T+T)%T;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const from=rot[i],to=from+(reduce?0:7*T)+delta,dur=reduce?600:6000,t0=performance.now();
+  let seg=Math.floor(from/a);
+  spinning[i]=true;$('go'+i).disabled=true;$('dial'+i).classList.remove('win');$('res'+i).innerHTML='';
+  const step=t=>{const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);rot[i]=from+(to-from)*e;
+    const sg=Math.floor(rot[i]/a);if(sg!==seg){seg=sg;tick()}blink=Math.floor(t/140);draw(i);
+    if(p<1)requestAnimationFrame(step);else done(i,n)};
+  requestAnimationFrame(step);
+}
+function done(i,n){
+  const c=COLORS[i],o=owners(c.k)[n],name=o?o.name.trim():'',nik=o?String(o.nik||'').trim():'';
+  rot[i]=rot[i]%(2*Math.PI);spinning[i]=false;$('go'+i).disabled=false;
+  S.winners.push({k:c.k,n,name,nik,id:o?rid(o):''});justWon=true;save();
+  last[i]=`${n}${name?' · '+esc(name):''}`;
+  renderAll();$('dial'+i).classList.add('win');
+  fanfare();confetti([c.c,'#ffffff','#4ea3ff',c.light]);
+  $('ovCard').style.setProperty('--c',c.c);$('ovColor').textContent='Roda '+c.name;
+  $('ovNum').textContent=n;$('ovWho').textContent=o?(name||'—'):'Belum ada pemilik';$('ovNik').textContent=nik?'NIK '+nik:'';
+  $('ov').classList.add('on');$('ovClose').focus();
+}
+
+/* ---------- confetti ---------- */
+const cf=$('cf'),cx2=cf.getContext('2d');let parts=[],cfRun=false;
+function confetti(cols){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const W=cf.width=innerWidth,H=cf.height=innerHeight;
+  for(let k=0;k<220;k++){const left=k%2;parts.push({x:left?-10:W+10,y:H*(.35+Math.random()*.3),vx:(left?1:-1)*(6+Math.random()*12),vy:-8-Math.random()*12,
+    w:6+Math.random()*7,h:4+Math.random()*5,c:cols[k%cols.length],r:Math.random()*6,vr:(Math.random()-.5)*.4})}
+  if(!cfRun){cfRun=true;requestAnimationFrame(cfStep)}
+}
+function cfStep(){const W=cf.width,H=cf.height;cx2.clearRect(0,0,W,H);
+  parts=parts.filter(p=>p.y<H+30);
+  parts.forEach(p=>{p.vy+=.32;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+    cx2.save();cx2.translate(p.x,p.y);cx2.rotate(p.r);cx2.fillStyle=p.c;cx2.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.r*2)));cx2.restore()});
+  if(parts.length)requestAnimationFrame(cfStep);else{cfRun=false;cx2.clearRect(0,0,W,H)}}
+
+/* ---------- tampilan ---------- */
+function renderWinners(){
+  const lastW=S.winners[S.winners.length-1];
+  $('win').innerHTML=COLORS.map(c=>{const ws=S.winners.filter(w=>w.k===c.k);
+    return `<div class="wcol" style="--c:${c.c};--d:${c.d}"><h3>${c.name}<small>${ws.length}</small></h3><ol class="win">${ws.length?ws.map(w=>
+      `<li class="${w===lastW&&justWon?'new':''}"><span class="n">${w.n}</span><span class="p"><b>${w.name?esc(w.name):(w.id?'—':'Tanpa pemilik')}</b>${w.nik?`<small>NIK ${esc(w.nik)}</small>`:''}</span></li>`).join('')
+      :'<li class="none">Belum ada</li>'}</ol></div>`}).join('');
+  justWon=false;
+  COLORS.forEach((c,i)=>{$('res'+i).innerHTML=last[i];$('left'+i).textContent=eligible(c.k).length+' tersisa'});
+}
+function renderTable(){
+  $('tb').innerHTML=S.rows.map((r,ri)=>`<tr>${FIELDS.map((f,fi)=>
+    `<td><input data-r="${ri}" data-f="${fi}" class="${fi>1?'num':fi?'':'nikc'}" ${fi!==1?'inputmode="numeric" size="3"':''} aria-label="${['NIK','Nama','Biru','Merah','Hijau'][fi]} baris ${ri+1}" value="${esc(r[f]||'')}"></td>`).join('')}
+    <td><button class="x" data-del="${ri}" aria-label="Hapus baris ${ri+1}">✕</button></td></tr>`).join('');
+  markWon();
+}
+function markWon(){const won=wonSet();[...$('tb').rows].forEach((tr,ri)=>{const r=S.rows[ri];tr.className=r&&has(r)&&won.has(rid(r))?'won':''});
+  $('count').textContent=S.rows.filter(has).length+' peserta · nomor 1–'+S.N}
+function renderWarn(){
+  const w=[],niks={},lbl=r=>`${r.name||'?'} (${String(r.nik||'').trim()||'tanpa NIK'})`;
+  S.rows.forEach(r=>{if(!has(r))return;const k=String(r.nik||'').trim();if(!k){w.push(`${r.name||'?'}: NIK kosong`);return}niks[k]=(niks[k]||0)+1});
+  Object.keys(niks).forEach(k=>{if(niks[k]>1)w.push(`NIK ${k} dipakai ${niks[k]} orang`)});
+  COLORS.forEach(c=>{const seen={};S.rows.forEach(r=>{if(!has(r)||!String(r[c.k]).trim())return;const n=parseInt(r[c.k],10);
+    if(!(n>=1))w.push(`${lbl(r)}: ${c.name} "${r[c.k]}" bukan nomor yang valid`);
+    else if(seen[n])w.push(`${c.name} ${n}: ${seen[n]} & ${lbl(r)}`);else seen[n]=lbl(r)})});
+  $('warn').innerHTML=w.map(esc).join('<br>');
+}
+function renderTema(){$('temaTxt').textContent='Tema: '+(S.tema.trim()||'TBD')}
+function syncN(){let mx=0;S.rows.forEach(r=>{if(!has(r))return;COLORS.forEach(c=>{const n=parseInt(r[c.k],10);if(n>mx)mx=n})});
+  S.N=Math.max(2,S.rows.filter(has).length,mx)}
+function renderAll(){if(!spinning.some(Boolean))syncN();renderWinners();markWon();renderWarn();drawAll()}
+
+/* ---------- input data ---------- */
+$('tb').addEventListener('input',e=>{const t=e.target;if(t.dataset.r==null)return;
+  S.rows[+t.dataset.r][FIELDS[+t.dataset.f]]=t.value;save();renderAll()});
+$('tb').addEventListener('paste',e=>{const t=e.target;if(t.dataset.r==null)return;
+  const txt=(e.clipboardData||window.clipboardData).getData('text');if(!/[\t\n]/.test(txt))return;
+  e.preventDefault();const lines=txt.replace(/\r/g,'').replace(/\n+$/,'').split('\n'),r0=+t.dataset.r,f0=+t.dataset.f;
+  lines.forEach((ln,li)=>{const ri=r0+li;while(S.rows.length<=ri)S.rows.push(blank());
+    ln.split('\t').forEach((v,ci)=>{const fi=f0+ci;if(fi<5)S.rows[ri][FIELDS[fi]]=v.trim()})});
+  save();renderTable();renderAll()});
+$('tb').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(!d)return;S.rows.splice(+d.dataset.del,1);
+  if(!S.rows.length)S.rows.push(blank());save();renderTable();renderAll()});
+function parsePaste(txt){
+  const rows=txt.replace(/\r/g,'').split('\n').filter(l=>l.trim()).map(l=>{let c=l.split('\t');if(c.length<2)c=l.split(/\s*[;,]\s*/);
+    return {nik:(c[0]||'').trim(),name:(c[1]||'').trim(),b:(c[2]||'').trim(),m:(c[3]||'').trim(),h:(c[4]||'').trim()}});
+  if(rows.length&&isNaN(parseInt(rows[0].b,10))&&isNaN(parseInt(rows[0].m,10)))rows.shift();
+  return rows.filter(r=>r.nik||r.name||r.b||r.m||r.h)}
+function doPaste(replace){const rows=parsePaste($('pbox').value);
+  if(!rows.length){$('pMsg').textContent='Kotak masih kosong';return}
+  const cur=S.rows.filter(r=>has(r)||r.b||r.m||r.h);S.rows=replace?rows:cur.concat(rows);save();renderTable();renderAll();
+  $('pbox').value='';$('pMsg').textContent=`${rows.length} peserta ${replace?'dimuat':'ditambahkan'}`}
+$('pReplace').onclick=()=>doPaste(true);$('pAppend').onclick=()=>doPaste(false);
+$('add').onclick=()=>{S.rows.push(blank());save();renderTable();const ins=$('tb').querySelectorAll('input');ins[ins.length-5].focus()};
+function armed(btn,label,fn){if(btn.dataset.arm){delete btn.dataset.arm;btn.textContent=label;fn();return}
+  btn.dataset.arm=1;btn.textContent='Yakin? Klik lagi';setTimeout(()=>{if(btn.dataset.arm){delete btn.dataset.arm;btn.textContent=label}},3500)}
+$('clear').onclick=e=>armed(e.currentTarget,'Kosongkan',()=>{S.rows=[blank()];save();renderTable();renderAll()});
+$('reset').onclick=e=>armed(e.currentTarget,'Reset',()=>{S.winners=[];last.fill('');save();renderTable();renderAll()});
+$('undo').onclick=()=>{const w=S.winners.pop();if(!w)return;last[COLORS.findIndex(c=>c.k===w.k)]='';save();renderAll()};
+$('owned').checked=S.owned;$('tema').value=S.tema;
+$('owned').addEventListener('change',e=>{S.owned=e.target.checked;save();renderAll()});
+$('tema').addEventListener('input',e=>{S.tema=e.target.value;save();renderTema()});
+
+/* ---------- panel & dialog ---------- */
+const openD=()=>{$('drawer').classList.add('open');$('scrim').classList.add('on');$('pbox').focus()};
+const closeD=()=>{$('drawer').classList.remove('open');$('scrim').classList.remove('on')};
+$('openData').onclick=openD;$('closeData').onclick=closeD;$('scrim').onclick=closeD;
+COLORS.forEach((c,i)=>$('go'+i).onclick=()=>spin(i));
+const closeO=()=>$('ov').classList.remove('on');
+$('ovClose').onclick=closeO;$('ov').addEventListener('click',e=>{if(e.target.id==='ov')closeO()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeO();closeD()}});
+renderSnd();renderTema();renderTable();renderAll();
+document.fonts&&document.fonts.ready.then(drawAll);
+}
+</script>
+</body>
+</html>
