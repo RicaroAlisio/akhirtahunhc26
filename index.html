@@ -14,13 +14,13 @@
    LAYOUT: judul + tema di atas, tiga roda sejajar, pita pemenang di bawah; data di panel samping */
 :root{color-scheme:dark;--brand:#323499;--pink:#ff4fa3;--purple:#8b5cf6;--cyan:#22d3ee;--lime:#a3e635;--lemon:#fde047;--rainbow:linear-gradient(90deg,#ff4fa3,#c084fc,#22d3ee,#a3e635,#fde047,#ff4fa3);--deep:#0b1660;--blue:#0f3fa8;--sky:#4ea3ff;--ice:#dcecff;--ink:#ffffff;--mute:#a9c4f0;--b:#1f6fe5;--m:#e5322d;--h:#16a34a}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;min-height:100vh;
+body{position:relative;margin:0;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;min-height:100vh;
   background:radial-gradient(circle at 12% 12%,#ffffff1c 0,#0000 32%),radial-gradient(circle at 90% 18%,#7dd3fc22 0,#0000 34%),
   linear-gradient(165deg,color-mix(in srgb,var(--brand),#fff 12%) 0%,var(--brand) 50%,color-mix(in srgb,var(--brand),#000 45%) 100%) fixed;background-color:var(--brand)}
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .deco span{position:absolute;opacity:.3;animation:float var(--t) ease-in-out infinite alternate}
 @keyframes float{to{transform:translateY(-28px) rotate(var(--r))}}
-.wrap{position:relative;z-index:1;max-width:none;margin:0;padding:clamp(28px,3vw,64px) clamp(20px,4vw,96px) clamp(40px,5vw,96px)}
+.wrap{position:relative;z-index:1;max-width:none;margin:0;padding:clamp(58px,3.8vw,76px) clamp(20px,4vw,96px) clamp(40px,5vw,96px)}
 header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
 .brand{display:flex;gap:clamp(18px,2.6vw,32px);align-items:flex-start}
 .logo{flex:none;width:clamp(78px,7.5vw,170px);display:grid;place-items:center;filter:drop-shadow(0 4px 10px #0005)}
@@ -40,12 +40,12 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .ghost{font-size:clamp(15px,.9vw,20px);min-height:clamp(44px,2.6vw,56px);background:#ffffff1a;border:1px solid #ffffff38;color:#fff;display:inline-flex;align-items:center;gap:8px}
 .ghost:hover{background:#ffffff2e}
 .ghost svg{width:20px;height:20px}
-.wheels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px);margin-top:clamp(36px,3.5vw,72px)}
+.wheels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px);margin-top:clamp(22px,2.2vw,44px)}
 .wheel{display:flex;flex-direction:column;align-items:center;gap:22px}
 .tag{display:flex;align-items:center;gap:10px}
 .tag b{font:800 clamp(24px,1.8vw,38px)/1 "Baloo 2",sans-serif;background:var(--c);padding:8px 22px 4px;border-radius:999px;box-shadow:0 4px 0 var(--d)}
 .tag small{color:var(--mute);font-weight:600;white-space:nowrap;font-size:clamp(14px,1vw,20px)}
-.dial{position:relative;width:100%;max-width:max(260px,min(100%,calc(100vh - 640px)));aspect-ratio:1;filter:drop-shadow(0 18px 30px #0009)}
+.dial{position:relative;width:100%;max-width:max(200px,min(100%,var(--dmax,480px)));aspect-ratio:1;filter:drop-shadow(0 18px 30px #0009)}
 .dial canvas{position:absolute;inset:0;width:100%;height:100%}
 .pointer{position:absolute;left:50%;top:-10px;transform:translateX(-50%);z-index:2;width:clamp(34px,2.4vw,52px);height:auto;aspect-ratio:34/44}
 .dial.win .pointer{animation:bob .5s ease-in-out 3}
@@ -117,7 +117,7 @@ td input.num{text-align:right}
 tr.won input{background:#e3ebf8;color:#7d8fb3}
 .x{min-height:38px;padding:0 10px;color:#7d8fb3}
 
-.tabs{display:inline-flex;gap:6px;margin-top:clamp(28px,3vw,52px);background:#ffffff14;border:1px solid #ffffff2e;border-radius:999px;padding:6px}
+.tabs{display:inline-flex;gap:6px;margin-top:clamp(20px,2vw,34px);background:#ffffff14;border:1px solid #ffffff2e;border-radius:999px;padding:6px}
 .tabs button{border-radius:999px;font:800 clamp(18px,1.4vw,28px)/1 "Baloo 2",sans-serif;padding:10px clamp(20px,2vw,36px) 6px;min-height:clamp(48px,3vw,64px);color:#dbe4ff}
 .tabs button[aria-selected=true]{background:#fff;color:var(--brand);box-shadow:0 4px 0 #0003}
 [hidden]{display:none!important}
@@ -161,6 +161,32 @@ tr.won input{background:#e3ebf8;color:#7d8fb3}
 .gnote{text-align:center;color:var(--mute);font-weight:700;margin-top:14px;min-height:1.5em}
 .gempty{text-align:center;padding:60px 20px;color:var(--mute);font-weight:700;font-size:20px}
 @media(max-width:900px){.gview{grid-template-columns:minmax(0,1fr)}}
+
+.exsel,.exlist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.exsel:empty{display:none}
+.exsel li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#ffe4f1;border:1px solid #ffb3d6;border-radius:12px;padding:6px 6px 6px 12px;font-weight:700}
+.exlist li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:1px solid #dbe4f3;border-radius:12px;padding:6px 6px 6px 12px}
+.exlist .who,.exsel .who{display:grid;line-height:1.25;min-width:0}
+.exlist .who b,.exsel .who b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.exlist .who small,.exsel .who small{color:#4b6290;font-weight:600}
+.exlist button,.exsel button{min-height:40px;font-size:14px;flex:none}
+.exlist li.on{background:#ffe4f1;border-color:#ffb3d6}
+.exnote{color:#4b6290;font-size:14px;padding:8px 2px}
+
+.bunting{position:absolute;left:0;right:0;top:0;height:60px;pointer-events:none;z-index:2;filter:drop-shadow(0 3px 3px #0003)}
+.bunting svg{display:block;width:100%;height:100%;overflow:visible}
+.bunting .fl{transform-box:view-box;animation:flap var(--d,2.4s) ease-in-out infinite alternate}
+@keyframes flap{0%{transform:rotate(-7deg) scaleX(.94)}100%{transform:rotate(7deg) scaleX(1.04)}}
+.bunting .str{animation:strw 3.2s ease-in-out infinite alternate}
+@keyframes strw{to{transform:translateY(2px)}}
+.balloons{position:fixed;bottom:-70px;width:clamp(70px,5vw,110px);pointer-events:none;z-index:0;overflow:visible;animation:bfloat 4.5s ease-in-out infinite alternate}
+.balloons.l{left:0}.balloons.r{right:0;animation-delay:-2s}
+.balloons .bl{transform-box:view-box;animation:bsway var(--d,3s) ease-in-out infinite alternate}
+@keyframes bfloat{to{transform:translateY(-26px)}}
+@keyframes bsway{0%{transform:rotate(-7deg)}100%{transform:rotate(7deg)}}
+.riser{position:fixed;bottom:-160px;width:clamp(40px,2.6vw,60px);pointer-events:none;z-index:0;opacity:0;animation:rise var(--t,16s) linear infinite;animation-delay:var(--dl,0s)}
+@keyframes rise{0%{transform:translate(0,0) rotate(-4deg);opacity:0}8%{opacity:.85}50%{transform:translate(28px,-60vh) rotate(5deg)}90%{opacity:.85}100%{transform:translate(-10px,-125vh) rotate(-3deg);opacity:0}}
+@media(max-width:1300px){.balloons,.riser{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media(max-width:900px){.wheels{grid-template-columns:minmax(0,1fr)}.dial{max-width:min(100%,360px)}}
 @media(max-width:600px){.tools .lbl{display:none}}
@@ -168,6 +194,8 @@ tr.won input{background:#e3ebf8;color:#7d8fb3}
 </head>
 <body>
 <div class="deco" id="deco" aria-hidden="true"></div>
+<div class="bunting" id="bunting" aria-hidden="true"></div>
+<div id="balloonBox" aria-hidden="true"></div>
 <div class="wrap">
   <header>
     <div class="brand">
@@ -179,6 +207,7 @@ tr.won input{background:#e3ebf8;color:#7d8fb3}
     </div>
     <div class="tools">
       <button class="ghost" id="snd" aria-pressed="true" aria-label="Suara"></button>
+      <button class="ghost" id="openSet" aria-label="Pengaturan" title="Pengaturan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
       <button class="ghost" id="openData"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="lbl">Data peserta</span></button>
     </div>
   </header>
@@ -235,6 +264,17 @@ tr.won input{background:#e3ebf8;color:#7d8fb3}
       <div class="row2" style="justify-content:space-between"><span class="small" id="count"></span><span class="row2"><button class="sec" id="add">+ Baris</button><button class="sec" id="clear">Kosongkan</button></span></div>
       <table><thead><tr><th>NIK</th><th>Nama</th><th>Biru</th><th>Merah</th><th>Hijau</th><th></th></tr></thead><tbody id="tb"></tbody></table>
     </div>
+  </div>
+</aside>
+<aside id="setDrawer" aria-label="Pengaturan">
+  <div class="dh"><h2>Pengaturan</h2><button class="ghost" id="closeSet">Tutup</button></div>
+  <div class="db">
+    <div class="fld">Peserta dikecualikan
+      <span class="small">Nomornya tetap tampil normal di roda, tapi tidak akan pernah keluar di doorprize maupun terpilih di mini games.</span></div>
+    <label class="fld">Cari peserta<input id="exQ" placeholder="Ketik nama atau NIK"></label>
+    <ul class="exlist" id="exList"></ul>
+    <div class="row2" style="justify-content:space-between"><span class="small" id="exCount"></span><button class="sec" id="exClear">Hapus semua</button></div>
+    <ul class="exsel" id="exSel"></ul>
   </div>
 </aside>
 
@@ -302,7 +342,11 @@ function status(k,n,own,won){
   if(S.winners.some(w=>w.k===k&&w.n===n))return 'drawn';
   const o=own[n];if(!o)return 'empty';return won.has(rid(o))?'out':'ok'}
 function eligible(k){const own=owners(k),won=wonSet(),out=[];
-  for(let n=1;n<=S.N;n++){const st=status(k,n,own,won);if(st==='ok'||(st==='empty'&&!S.owned))out.push(n)}return out}
+  const ex=exSet();
+  for(let n=1;n<=S.N;n++){const st=status(k,n,own,won);if(st==='ok'&&ex.has(rid(own[n])))continue;if(st==='ok'||(st==='empty'&&!S.owned))out.push(n)}return out}
+function shownLeft(k){const own=owners(k),won=wonSet();let n=0;for(let i=1;i<=S.N;i++){const st=status(k,i,own,won);if(st==='ok'||(st==='empty'&&!S.owned))n++}return n}
+function shownPool(g){const won=wonSet(),pk=pickedIds(),sk=new Set(g?g.skip:[]);return people().filter(p=>!won.has(p.id)&&!pk.has(p.id)&&!sk.has(p.id)).length}
+function exSet(){return new Set(Array.isArray(S.excl)?S.excl:[])}
 
 $('wheels').innerHTML=COLORS.map((c,i)=>`<div class="wheel" style="--c:${c.c};--d:${c.d}">
   <div class="tag"><b>${c.name}</b><small id="left${i}"></small></div>
@@ -340,6 +384,10 @@ function draw(i){
   x.beginPath();x.arc(cx,cx,hub,0,2*Math.PI);x.fillStyle=hg;x.fill();x.lineWidth=4;x.strokeStyle=c.d;x.stroke();
   x.fillStyle=c.d;x.font=`800 ${Math.max(13,hub*0.42)}px "Baloo 2",sans-serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(c.name,cx,cx+2);
 }
+function fitDial(){const d=$('dial0'),g=$('go0');if(!d||!g||$('vDoor').hidden)return;
+  const top=d.getBoundingClientRect().top,below=g.getBoundingClientRect().bottom-d.getBoundingClientRect().bottom;
+  const avail=Math.floor(innerHeight-top-below-24);document.documentElement.style.setProperty('--dmax',Math.max(200,avail)+'px')}
+addEventListener('resize',fitDial);
 const drawAll=()=>COLORS.forEach((c,i)=>draw(i));
 const ro=new ResizeObserver(drawAll);COLORS.forEach((c,i)=>ro.observe($('cv'+i)));
 
@@ -393,7 +441,7 @@ function renderWinners(){
       `<li class="${w===lastW&&justWon?'new':''}"><span class="n">${w.n}</span><span class="p"><b>${w.name?esc(w.name):(w.id?'—':'Tanpa pemilik')}</b>${w.nik?`<small>NIK ${esc(w.nik)}</small>`:''}</span></li>`).join('')
       :'<li class="none">Belum ada</li>'}</ol></div>`}).join('');
   justWon=false;
-  COLORS.forEach((c,i)=>{$('res'+i).innerHTML=last[i];$('left'+i).textContent=eligible(c.k).length+' tersisa'});
+  COLORS.forEach((c,i)=>{$('res'+i).innerHTML=last[i];$('left'+i).textContent=shownLeft(c.k)+' tersisa'});
 }
 function renderTable(){
   $('tb').innerHTML=S.rows.map((r,ri)=>`<tr>${FIELDS.map((f,fi)=>
@@ -454,21 +502,21 @@ let rolling=false;
 const pickedIds=()=>{const s=new Set();S.games.forEach(g=>g.picks.forEach(p=>s.add(p.id)));return s};
 function people(){const seen=new Set(),out=[];S.rows.forEach(r=>{if(!has(r))return;const id=rid(r);if(seen.has(id))return;seen.add(id);
   out.push({id,name:String(r.name||'').trim()||'(tanpa nama)',nik:String(r.nik||'').trim()})});return out}
-function pool(g){const won=wonSet(),pk=pickedIds(),sk=new Set(g?g.skip:[]);return people().filter(p=>!won.has(p.id)&&!pk.has(p.id)&&!sk.has(p.id))}
+function pool(g){const won=wonSet(),pk=pickedIds(),sk=new Set(g?g.skip:[]),ex=exSet();return people().filter(p=>!won.has(p.id)&&!pk.has(p.id)&&!sk.has(p.id)&&!ex.has(p.id))}
 function sample(arr,k){const a=arr.slice(),out=[];while(out.length<k&&a.length)out.push(a.splice(rnd(a.length),1)[0]);return out}
 const curG=()=>S.games.find(g=>g.id===S.gsel)||S.games[0];
 function ding(){if(!S.sound||!AC)return;const t=AC.currentTime;tone(1319,t,.25,'triangle',.22);tone(1976,t+.06,.3,'sine',.12)}
 
 function setView(v){S.view=v;save();$('vDoor').hidden=v!=='door';$('vGame').hidden=v!=='game';
   $('tabDoor').setAttribute('aria-selected',v==='door');$('tabGame').setAttribute('aria-selected',v==='game');
-  if(v==='door')drawAll();else renderGames()}
+  if(v==='door'){fitDial();drawAll()}else renderGames()}
 $('tabDoor').onclick=()=>{if(!rolling)setView('door')};$('tabGame').onclick=()=>setView('game');
 
 function renderGames(){
   if(!S.games.length)S.gsel='';
   const g=curG();if(g)S.gsel=g.id;
   $('glist').innerHTML=S.games.map(x=>`<li><button data-g="${x.id}" class="${x.id===S.gsel?'on':''} ${x.picks.length?'done':''}"${rolling?' disabled':''}><b>${esc(x.name)}</b><small>${x.picks.length}/${x.n} orang</small></button></li>`).join('')||'<li class="gempty" style="padding:10px;font-size:15px">Belum ada mini game</li>';
-  $('poolN').textContent=pool(g).length;
+  $('poolN').textContent=shownPool(g);
   if(!g){$('stage').innerHTML='<div class="gempty">Tambahkan mini game di panel kiri.</div>';return}
   const slots=[];for(let j=0;j<g.n;j++){const p=g.picks[j];
     slots.push(p?`<div class="slot" id="sl${j}"><span class="no">${j+1}</span><button class="swap" data-swap="${j}" ${rolling?'disabled':''}>Ganti</button><div class="nm">${esc(p.name)}</div><div class="nk">${p.nik?'NIK '+esc(p.nik):''}</div></div>`
@@ -520,14 +568,57 @@ function finish(g,short){
   g.picks=g.picks.filter(Boolean);save();
   setTimeout(()=>{rolling=false;renderGames();fanfare();confetti(['#ff4fa3','#22d3ee','#a3e635','#c084fc','#fde047','#ffffff']);
     if(short)$('gNote').textContent='Kandidat tidak cukup untuk mengisi semua slot.'},350)}
+
+/* ---------- pengaturan: peserta dikecualikan ---------- */
+function nums(id){const r=S.rows.find(x=>has(x)&&rid(x)===id);return r?`B ${r.b||'-'} · M ${r.m||'-'} · H ${r.h||'-'}`:''}
+function renderEx(){
+  if(!Array.isArray(S.excl))S.excl=[];
+  const ex=exSet(),ppl=people(),byId=new Map(ppl.map(p=>[p.id,p]));
+  $('exCount').textContent=ex.size?`${ex.size} peserta dikecualikan`:'Belum ada peserta yang dikecualikan';
+  $('exSel').innerHTML=[...ex].map(id=>{const p=byId.get(id)||{name:'(tidak ada di data)',nik:id.startsWith('nama:')?'':id};
+    return `<li><span class="who"><b>${esc(p.name)}</b><small>${p.nik?'NIK '+esc(p.nik)+' · ':''}${nums(id)}</small></span><button class="sec" data-ex="${esc(id)}">Batalkan</button></li>`}).join('');
+  const q=norm($('exQ').value);
+  if(!q){$('exList').innerHTML='<li class="exnote" style="background:none;border:0">Ketik nama atau NIK untuk mencari.</li>';return}
+  const hit=ppl.filter(p=>norm(p.name).includes(q)||p.nik.includes(q)).slice(0,40);
+  $('exList').innerHTML=hit.length?hit.map(p=>{const on=ex.has(p.id);
+    return `<li class="${on?'on':''}"><span class="who"><b>${esc(p.name)}</b><small>${p.nik?'NIK '+esc(p.nik)+' · ':''}${nums(p.id)}</small></span><button class="${on?'sec':'pri'}" data-ex="${esc(p.id)}">${on?'Batalkan':'Kecualikan'}</button></li>`}).join('')
+    :'<li class="exnote" style="background:none;border:0">Tidak ditemukan.</li>';
+}
+function toggleEx(id){if(!Array.isArray(S.excl))S.excl=[];const i=S.excl.indexOf(id);if(i>=0)S.excl.splice(i,1);else S.excl.push(id);save();renderEx();renderAll()}
+$('exSel').addEventListener('click',e=>{const b=e.target.closest('[data-ex]');if(b)toggleEx(b.dataset.ex)});
+$('exList').addEventListener('click',e=>{const b=e.target.closest('[data-ex]');if(b)toggleEx(b.dataset.ex)});
+$('exQ').addEventListener('input',renderEx);
+$('exClear').onclick=e=>armed(e.currentTarget,'Hapus semua',()=>{S.excl=[];save();renderEx();renderAll()});
+const openS=()=>{renderEx();$('setDrawer').classList.add('open');$('scrim').classList.add('on');$('exQ').focus()};
+const closeS=()=>{$('setDrawer').classList.remove('open');$('scrim').classList.remove('on')};
+$('openSet').onclick=openS;$('closeSet').onclick=closeS;
+
+/* ---------- aksesoris ---------- */
+function balloonSvg(cx,cy,c,rx,d){const ry=rx*1.18,bx=cx+4,by=cy+ry+120;
+  return `<g class="bl" style="transform-origin:${bx}px ${by}px;--d:${d}s;animation-delay:-${(cx%7)/3}s"><path d="M${cx} ${cy+ry} q-6 30 4 60 q8 30 -2 60" fill="none" stroke="#ffffff99" stroke-width="1.5"/>
+  <ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${c}"/><path d="M${cx-4} ${cy+ry-1} h8 l-4 7z" fill="${c}"/>
+  <ellipse cx="${cx-rx*.38}" cy="${cy-ry*.4}" rx="${rx*.22}" ry="${ry*.3}" fill="#fff" fill-opacity=".45" transform="rotate(-25 ${cx-rx*.38} ${cy-ry*.4})"/></g>`}
+function buildAcc(){
+  const W=Math.max(320,document.documentElement.clientWidth),seg=Math.max(130,Math.min(190,W*.09)),n=Math.ceil(W/seg),FC=['#ff4fa3','#22d3ee','#a3e635','#fde047','#c084fc'];
+  let p='',f='',k=0;
+  for(let i=0;i<n;i++){const x0=i*seg;p+=`${i?'':'M0 6 '}Q${x0+seg/2} 28 ${x0+seg} 6 `;
+    [.19,.4,.6,.81].forEach(t=>{const x=x0+t*seg,y=6+44*t*(1-t),c=FC[k%FC.length],w=seg*.075,h=seg*.19;
+      f+=`<g class="fl" style="transform-origin:${x}px ${y}px;--d:${(2+((k*37)%10)/10).toFixed(1)}s;animation-delay:-${((k*53)%20)/10}s"><path d="M${x-w} ${y} L${x+w} ${y+1} L${x+1} ${y+h} Z" fill="${c}"/><path d="M${x-w} ${y} L${x+w} ${y+1} L${x+w*.8} ${y+4} L${x-w*.9} ${y+3} Z" fill="#fff" fill-opacity=".35"/></g>`;k++})}
+  $('bunting').innerHTML=`<svg viewBox="0 0 ${W} 60" preserveAspectRatio="xMinYMin meet"><path class="str" d="${p}" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="2"/>${f}</svg>`;
+  $('balloonBox').innerHTML=`<svg class="balloons l" viewBox="0 0 120 260">${balloonSvg(42,70,'#ff4fa3',26,3.4)}${balloonSvg(82,40,'#22d3ee',22,2.7)}</svg>
+   <svg class="balloons r" viewBox="0 0 120 260">${balloonSvg(40,38,'#c084fc',22,3.1)}${balloonSvg(78,66,'#a3e635',24,2.6)}${balloonSvg(70,118,'#fde047',18,3.6)}</svg>
+   <svg class="riser" viewBox="0 0 60 200" style="left:6vw;--t:17s;--dl:3s">${balloonSvg(30,34,'#22d3ee',22,2.5)}</svg>
+   <svg class="riser" viewBox="0 0 60 200" style="right:8vw;--t:19s;--dl:11s">${balloonSvg(30,34,'#ff4fa3',22,2.8)}</svg>`;
+}
+buildAcc();let accT;addEventListener('resize',()=>{clearTimeout(accT);accT=setTimeout(buildAcc,200)});
 /* ---------- panel & dialog ---------- */
 const openD=()=>{$('drawer').classList.add('open');$('scrim').classList.add('on');$('pbox').focus()};
 const closeD=()=>{$('drawer').classList.remove('open');$('scrim').classList.remove('on')};
-$('openData').onclick=openD;$('closeData').onclick=closeD;$('scrim').onclick=closeD;
+$('openData').onclick=openD;$('closeData').onclick=closeD;$('scrim').onclick=()=>{closeD();closeS()};
 COLORS.forEach((c,i)=>$('go'+i).onclick=()=>spin(i));
 const closeO=()=>$('ov').classList.remove('on');
 $('ovClose').onclick=closeO;$('ov').addEventListener('click',e=>{if(e.target.id==='ov')closeO()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeO();closeD()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeO();closeD();closeS()}});
 {
   const D=$('deco'),SH=['ring','star','circle'],DC=['#ff4fa3','#22d3ee','#a3e635','#c084fc','#fde047','#60a5fa'];let h='';
   for(let j=0;j<10;j++){const c=DC[j%DC.length],sz=14+((j*37)%30),x=(j*47+11)%100,y=(j*29+7)%100,t=(3+(j%5))+'s',r=((j%2?1:-1)*(10+j*7))+'deg',sh=SH[j%SH.length];
@@ -552,9 +643,9 @@ $('logoFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)retu
     S.logo=cv.toDataURL('image/png');save();showLogo(S.logo)};im.src=rd.result};rd.readAsDataURL(f)});
 $('logoDel').onclick=()=>{S.logo='';save();$('logoFile').value='';initLogo()};
 applyBrand();initLogo();
-if(!Array.isArray(S.games))S.games=[];
+if(!Array.isArray(S.games))S.games=[];if(!Array.isArray(S.excl))S.excl=[];
 renderSnd();renderTema();renderTable();renderAll();setView(S.view==='game'?'game':'door');
-document.fonts&&document.fonts.ready.then(drawAll);
+document.fonts&&document.fonts.ready.then(()=>{fitDial();drawAll()});fitDial();
 }
 </script>
 </body>
